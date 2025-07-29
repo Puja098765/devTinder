@@ -3,27 +3,19 @@
 const express = require("express");
 const app = express(); //creating new expressjs app or web server
 
-// This will only handle GET call to /user
-app.get("/user",(req,res)=>{
-   res.send({firstName:"Puja", lastName:"Keshri"});
+const {adminAuth,userAuth} = require("./middlewares/auth");
+
+app.use("/admin",adminAuth);
+app.get("/user",userAuth,(req,res)=>{
+    res.send("User Data Sent");
 });
 
-app.post("/user",(req,res)=>{
-   res.send("Data successfully saved to the database");
+app.get("/admin/getAllData",(req, res)=>{
+   res.send("All Data Sent");
 });
-
-app.delete("/user",(req,res)=>{
-   res.send("Deleted successfully!");
-})
-
-// This will match all the HTTP method API calls to /test 
-app.use("/test",(req,res)=>{
-    res.send("Hello from the server!");
- });
-
-//  app.use("/",(req,res)=>{
-//     res.send("Hello from Puja");
-//  });  // if at first , this code  overwrites everythings and any-other routes doesn't work ,if we place at last then it will work
+app.get("/admin/deleteUser",(req,res)=>{
+    res.send("Deleted a user");
+});
 app.listen(3000, ()=>{
     console.log("Server is successfully listening on port 3000...");
  });
