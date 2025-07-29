@@ -5,15 +5,12 @@ const connectDB= require("./config/database");
 const app = express(); //creating new expressjs app or web server
 const User = require("./models/user"); 
 
+// Middleware activated for all the routes,it reads the json in postman convert into js obj and add js object back to req
+app.use(express.json());
 // sending data to database
 app.post("/signup",async (req,res)=>{
     // Creating a new instance of the User model
-    const user = new User({
-       firstName: "Puja",
-       lastName: "Keshri",
-       emailId: "pujakeshri123@gmail.com",
-       password:"puja@123",
-    });
+    const user = new User(req.body);
     try{
     await user.save();
     res.send("User Added successfully!");
