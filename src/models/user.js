@@ -1,4 +1,6 @@
 const mongoose = require("mongoose");
+const validator = require("validator");
+
 // Defining User Schema
 const userSchema = new mongoose.Schema({
 firstName:{
@@ -17,11 +19,21 @@ emailId:{
     unique:true,
     lowercase:true,
     trim: true,
+    validate(value){
+        if (!validator.isEmail(value)){
+            throw new Error("Invalid email address: " + value);
+        }
+    },
 },
 password:{
     type:String,
     required: true,
-},
+    validate(value){
+        if (!validator.isStrongPassword(value)){
+            throw new Error("Enter a strong Password: " + value);
+        }
+    },
+}, 
 age:{
     type:Number,
     min:18,
@@ -38,6 +50,11 @@ gender:{
 photoUrl:{
     type: String,
     default:"https://toppng.b-cdn.net/uploads/preview/donna-picarro-dummy-avatar-115633298255iautrofxa.png",
+    validate(value){
+        if (!validator.isURL(value)){
+            throw new Error("Invalid Photo URL: " + value);
+        }
+    },
 },
 about:{
     type: String,
