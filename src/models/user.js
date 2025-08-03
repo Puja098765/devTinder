@@ -3,6 +3,7 @@ const validator = require("validator");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
+
 // Defining User Schema
 const userSchema = new mongoose.Schema({
 firstName:{
@@ -43,6 +44,10 @@ age:{
 },
 gender:{
     type:String,
+    // enum:{
+    //     values:["male","female","other"],
+    //     message:`{VALUE} is not a valid gender type`,
+    // }
     validate(value){
         if (!["male","female","others"].includes(value)){
             throw new Error("Gender data is not valid");
@@ -68,6 +73,11 @@ skills:{
 },{
     timestamps: true,
 });
+
+// compound indexing make db faster
+// User.find({ firstName: "Madhu", lastName:"keshri"});
+userSchema.index({ firstName:1, lastName:1});
+
 userSchema.methods.getJWT = async function () {
     const user = this;
     const token = await jwt.sign({ _id: user._id }, "DEV@Tinder$790", {
