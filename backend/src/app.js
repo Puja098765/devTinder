@@ -3,6 +3,8 @@ const connectDB = require('./config/database');
 const app = express();
 const User = require('./models/user');
 
+// express json middleware to convert  body's json data to js object
+app.use(express.json());
 
 // const { adminAuth ,userAuth} = require("./middlewares/auth");
 // app.use("/admin", adminAuth);
@@ -14,12 +16,8 @@ const User = require('./models/user');
 // });
 
 app.post("/signup",  async (req,res)=>{
-    const user = new User({
-        firstName: "Ansh",
-        lastName: "keshri",
-        emailId: "ansh@gmail.com",
-        password: "Ansh@123"
-    });
+    
+    const user = new User(req.body);
     try {
   await user.save(); 
    res.send("User Added successfully");
