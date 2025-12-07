@@ -28,6 +28,54 @@ app.post("/signup",  async (req,res)=>{
 
 });
 
+// Get user by email
+app.get("/user", async (req,res)=>{
+    const userEmail = req.body.emailId;
+    try {
+        const users = await User.find({emailId: userEmail});
+        if(users.lenght === 0) {
+             res.status(404).send("User not found");
+        } else {
+            res.send(users);
+        }
+        
+    } catch (err) {
+        res.status(400).send("Error fetching user:" + err.message);
+    }
+});
+// Feed API-get all the users from the database
+app.get("/feed", async (req,res)=>{
+    try {
+        const users = await User.find({});
+        res.send(users);
+    } catch (err) {
+        res.status(400).send("Something went wrong ");
+    }
+});
+// Delete a user from the database by using userId
+app.delete("/user", async (req,res) =>{
+   const userId = req.body.userId;
+   try {
+    const user = await User.findByIdAndDelete(userId);
+    res.send("User deleted successfully");
+   } catch (err) {
+    res.status(400).send("Error deleting user: " + err.message);
+   }
+});
+// update data of the user
+app.patch("/user", async (req,res)=>{
+    const userId = req.body.userId;
+    const data = req.body;
+    try {
+        await User.findByIdAndUpdate({_id: userId },data, {
+            returnDocument: 'after',
+            runValidators: true,
+        });
+        res.send("User data updated successfully");
+    } catch (err) {
+        res.status(400).send("Something went wrong");
+    }
+});
 
 
 
