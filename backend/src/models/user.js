@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+// validator library 
+const validator = require('validator');
 
 const userSchema = new mongoose.Schema({
     firstName:{
@@ -16,10 +18,21 @@ const userSchema = new mongoose.Schema({
         required: true,
         unique: true,
         trim: true,
+        validate(value) {
+            if(!validator.isEmail(value)) {
+                throw new Error("Email is not valid");
+            }
+        },
     },
     password:{
         type: String,
         required: true,
+         validate(value) {
+            if(!validator.isStrongPassword(value)) {
+                throw new Error("Enter a strong password");
+            }
+        },
+
     },
     age:{
         type: Number,
@@ -38,6 +51,11 @@ const userSchema = new mongoose.Schema({
     photoUrl: {
         type: String,
         default: "https://weimaracademy.org/wp-content/uploads/2021/08/dummy-user.png",
+        validate(value) {
+            if(!validator.isURL(value)) {
+                throw new Error("URL is not valid");
+            }
+        },
     },
     about: {
         type: String,
