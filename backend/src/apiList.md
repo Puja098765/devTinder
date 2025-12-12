@@ -1,25 +1,24 @@
 # DevTinder APIs
 use Express Router
 
-authRouter
+## authRouter
 - POST /signup
 - POST /login
 - POST /logout
 
-profileRouter
+## profileRouter
 - GET /profile/view
 - PATCH /profile/edit
 - PATCH /profile/password // forgot password
 
-connectionRequestRouter
+## connectionRequestRouter
 - POST /request/send/:status/:userId
+- POST /request/review/:status/:requestId
 
-- POST /request/review/accepted/:requestId
-- POST /request/review/rejected/:reuestId
 
- userRouter
-- GET /user/connections
+ ## userRouter
 - GET /user/reuests/received
+- GET /user/connections
 - GET /user/feed - Gets you the profiles of other users on platform
 
 Status: ignore, interested,accepted,rejected
