@@ -27,7 +27,9 @@
 - build the user card on feed
 - Edit Profile feature
 - Show Toast Message on save of profile
-- see all my connections
+- New Page - see all my connections
+- New Page - See all my Connection Requests
+- Feature- Accept/Reject Connection Request
 
 
 

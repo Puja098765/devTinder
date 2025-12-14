@@ -34,11 +34,11 @@ const Connections =()=>{
         <div className="absolute inset-0 bg-black/30"></div>
             <h1 className="font-bold text-5xl text-gray-800">Connections</h1>
             {connections.map((connection) => {
-                const { firstName, lastName, photoUrl, age, gender, about } = connection;
+                const { _id,firstName, lastName, photoUrl, age, gender, about } = connection;
                 return (
-                   <div className=" flex m-4 p-4 rounded-lg bg-base-300 w-1/2 mx-auto">
+                   <div key={_id} className=" flex m-4 p-4 rounded-lg bg-base-300 w-1/2 mx-auto">
                     <div>
-                        <img alt="photo" className="w-20 h-20 rounded-full" src={photoUrl} />
+                        <img alt="photo" className="w-20 h-20 rounded-full object-cover" src={photoUrl} />
                         </div>
                         <div className="text-left mx-4">
                             <h2 className="font-bold text-xl">
@@ -48,6 +48,7 @@ const Connections =()=>{
                             <p>{about}</p>
                    
                     </div>
+                   
                     </div>
                 );
                 
