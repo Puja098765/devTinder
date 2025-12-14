@@ -8,6 +8,7 @@ import { BASE_URL } from "../utils/constants";
 const Login =()=>{
     const [emailId,setEmailId] =useState("puja@gmail.com");
     const [password,setPassword] =useState("Puja@123");
+    const [error, setError] = useState("");
     const dispatch = useDispatch();
     const navigate = useNavigate(); 
 
@@ -26,9 +27,10 @@ const Login =()=>{
     dispatch(addUser(res.data));
     return navigate("/");
      } catch (err) {
-        console.error(err);
+      setError(err?.response?.data || "Something went wrong");
+       
      }
-    };
+    }; 
 
     return ( 
     <div className=" min-h-screen flex justify-center items-center bg-cover bg-center " style={{backgroundImage: "url('https://plus.unsplash.com/premium_photo-1681400054984-c20bf5879c3b?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzJ8fHRlY2hub2xvZ3l8ZW58MHx8MHx8fDA%3D')",}}>
@@ -50,6 +52,7 @@ const Login =()=>{
         <input type="password" value={password} className="input input-border w-full max-w-xs" onChange={(e) => setPassword(e.target.value)}/>
        </label> 
     </div>
+    <p className="text-red-500">{error}</p>
     <div className="card-actions justify-center m-2">
       <button className="btn btn-primary" onClick={handleLogin}>Login</button>
     </div>
