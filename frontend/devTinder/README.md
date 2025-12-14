@@ -31,6 +31,7 @@
 - New Page - See all my Connection Requests
 - Feature- Accept/Reject Connection Request
 - Send/Ignore the user card from thr feed
+- Signup New User
 
 
 
