@@ -23,7 +23,11 @@
 - You should not be access other routes without login
 - if token is not present , redirect user to login page
 - Logout
-- Profile
+- Get the feed and add the feed in the store
+- build the user card on feed
+- Edit Profile feature
+- Show Toast Message on save of profile
+- see all my connections
 
 
 
