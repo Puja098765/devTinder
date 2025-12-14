@@ -12,10 +12,11 @@ const Requests =()=>{
 
     const reviewRequest = async (status, _id) => {
         try {
-            const res = axios.post(BASE_URL + "/request/review/" + status + "/" + _id,{},{withCredentials:true });
+            const res = await axios.post(BASE_URL + "/request/review/" + status + "/" + _id, {},{withCredentials:true });
+            console.log(res);
             dispatch(removeRequest(_id)); 
         } catch (err) {
-
+            console.log(err.response?.data || err.message);
         }
     }
 
@@ -41,12 +42,12 @@ const Requests =()=>{
          backgroundSize: "cover",
          backgroundPosition:"center",
     }}>
-        <div className="absolute inset-0 bg-black/30"></div>
+       
             <h1 className="font-bold text-5xl text-gray-800"> Connection Requests</h1>
             {requests.map((request) => {
-                const { _id, firstName, lastName, photoUrl, age, gender, about } = request.fromUserId;
+                const {  firstName, lastName, photoUrl, age, gender, about } = request.fromUserId;
                 return (
-                   <div key={_id} className=" flex justify-between items-center m-4 p-4 rounded-lg bg-base-300 w-2/3 mx-auto">
+                   <div key={request._id} className=" flex justify-between items-center m-4 p-4 rounded-lg bg-base-300 w-2/3 mx-auto">
                     <div>
                         <img alt="photo" className="w-20 h-20 rounded-full" src={photoUrl} />
                         </div>

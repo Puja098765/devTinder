@@ -11,7 +11,8 @@ const feed = useSelector((store) => store.feed);
 const dispatch = useDispatch();
 
     const getFeed = async ()=> {
-        if (feed) return;
+        // if (feed) return;
+        if (feed && feed.length) return <h1 flex justify-center my-10>No new users founds!</h1>; 
         try {
         const res= await axios.get(BASE_URL + "/feed", {withCredentials:true});
         dispatch(addFeed(res?.data?.data));
