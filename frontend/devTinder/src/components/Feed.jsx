@@ -25,8 +25,11 @@ const dispatch = useDispatch();
     useEffect(()=> {
         getFeed();
     },[]);
+    // if (feed && feed.length) return <h1 flex justify-center my-10>No new users founds!</h1>; 
     return ( 
+        
         feed && (
+            
     <div className="flex justify-center my-10">
   <UserCard user={feed[0]}/>
     </div>

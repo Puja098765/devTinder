@@ -4,6 +4,8 @@ const app = express();
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
 
+require("dotenv").config();
+
 
 app.use(cors({
     origin: "http://localhost:5173",
@@ -29,7 +31,7 @@ app.use("/",userRouter);
 connectDB()
 .then(()=>{
     console.log("Database connected successfully");
-    app.listen(3000, ()=>{
+    app.listen(process.env.PORT, ()=>{
     console.log("server listening on port 3000");
 });
 })
