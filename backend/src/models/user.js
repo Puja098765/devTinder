@@ -54,6 +54,13 @@ const userSchema = new mongoose.Schema({
         //     }
         // },
     },
+    isPremium: {
+        type: Boolean,
+        default: false,
+    },
+    membershipType: {
+        type: String,
+    },
     photoUrl: {
         type: String,
         default: "https://weimaracademy.org/wp-content/uploads/2021/08/dummy-user.png",
