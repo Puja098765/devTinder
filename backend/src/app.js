@@ -12,7 +12,10 @@ app.use(cors({
     // origin: "http://localhost:5173",
     origin: ["https://devtinder-frontend-079s.onrender.com" , "http://localhost:5173"],
     credentials: true,
+     methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
 }));
+
+
 // express json middleware to convert  body's json data to js object
 app.use(express.json());
 // cookie parser middleware to convert long string into a simple JavaScript object and helps your server read ,see, use cookies sent from the browser..
