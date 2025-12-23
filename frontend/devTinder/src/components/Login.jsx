@@ -48,7 +48,7 @@ const Login =()=>{
     return ( 
     <div className=" min-h-screen flex justify-center items-center bg-cover bg-center " style={{backgroundImage: "url('https://plus.unsplash.com/premium_photo-1681400054984-c20bf5879c3b?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzJ8fHRlY2hub2xvZ3l8ZW58MHx8MHx8fDA%3D')",}}>
          
-    <div className="card bg-base-300 w-96 shadow-xl bg-opacity-90 -translate-y-30">
+    <div className="card bg-base-300 w-96 shadow-xl bg-opacity-90 -translate-y-30 mt-20">
   <div className="card-body ">
     <h2 className="card-title justify-center">{isLoginForm ? "Login" : "Sign Up"}</h2>
     <div >

@@ -34,8 +34,11 @@ const EditProfile =({ user })=> {
     return (
       <>
         <div className=" min-h-screen w-full">
-       <div className=" min-h-screen w-full flex justify-center pt-16  bg-cover bg-center " style={{backgroundImage: "url('https://cdn.shopify.com/s/files/1/0070/7032/articles/cover_20photo_ae0bed76-904c-4632-b191-02ab732c946d.png?v=1745611027')",}}>
-         <div className="flex items-start gap-10">
+       <div className=" min-h-screen w-full flex justify-center pt-16  bg-cover bg-center " style={{backgroundImage: "url('https://cdn.shopify.com/s/files/1/0070/7032/articles/cover_20photo_ae0bed76-904c-4632-b191-02ab732c946d.png?v=1745611027')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+       }}>
+         <div className="flex items-start gap-10 pt-14">
     <div className="card bg-base-300 w-96  shadow-xl bg-opacity-90 ">
   <div className="card-body h-full ">
     <h2 className="card-title justify-center">Edit Profile</h2>

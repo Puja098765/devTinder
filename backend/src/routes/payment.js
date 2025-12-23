@@ -43,9 +43,10 @@ try {
 }
 });
 
+// create webhook url in razorpay dashboard (hhts://devtinder.in/api/payment/webhook) call whenever payment fail or captured and secret: DevTinder$123 
 paymentRouter.post("/payment/webhook", async (req, res) => {
    try {
-      const webhookSignature = req.get["X-Razorpay-Signature"];
+      const webhookSignature = req.get("X-Razorpay-Signature");
 
       const isWebhookValid = validateWebhookSignature(JSON.stringify(req.body), webhookSignature, process.env.RAZORPAY_WEBHOOK_SECRET);
       if (!isWebhookValid) {
@@ -58,23 +59,36 @@ paymentRouter.post("/payment/webhook", async (req, res) => {
       payment.status = paymentDetails.status;
       await payment.save();
 
+     // Update the user as premium
       const user = await User.findOne({_id: payment.userId});
       user.isPremium = true;
       user.membershipType = payment.notes.membershipType;
-     await user.save();
+      await user.save();
       
 
-      // Update the user as premium
+ 
+    
       // if (req.body.event == "payment.captured") {
 
       // }
       // if (req.body.event == "payment.failed") {
 
       // }
+      // return sucess response to razorpay
       return res.status(200).json({ msg: "Webhook received successfully" });
    } catch (err) {
       return res.status(500).json({ msg: err.message });
    }
-});           
+});   
+
+// payment verify api
+paymentRouter.get("/premium/verify", userAuth, async (req,res) => {
+   const user = req.user.toJSON();
+   if (user.isPremium) {
+      return res.json({  ...user});
+
+   }
+   return res.json({  ...user});
+});
 
 module.exports = paymentRouter;

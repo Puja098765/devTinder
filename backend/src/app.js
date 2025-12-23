@@ -3,6 +3,7 @@ const connectDB = require('./config/database');
 const app = express();
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
+const http = require("http");
 
 require("dotenv").config();
 
@@ -21,19 +22,27 @@ const profileRouter = require("./routes/profile");
 const requestRouter = require("./routes/request");
 const userRouter = require("./routes/user");
 const paymentRouter = require("./routes/payment");
+const initializeSocket = require('./utils/socket');
+const chatRouter = require('./routes/chat');
+
+
 
 app.use("/", authRouter);
 app.use("/", profileRouter );
-app.use("/", requestRouter);
+app.use("/", requestRouter); 
 app.use("/",userRouter);
 app.use("/", paymentRouter);
+app.use("/", chatRouter);
+
+const server = http.createServer(app);
+initializeSocket(server);
 
 
 // first connect to database then listen to server
 connectDB()
 .then(()=>{
     console.log("Database connected successfully");
-    app.listen(process.env.PORT, ()=>{
+    server.listen(process.env.PORT, ()=>{
     console.log("server listening on port 3000");
 });
 })
