@@ -9,7 +9,8 @@ require("dotenv").config();
 
 
 app.use(cors({
-    origin: "http://localhost:5173",
+    // origin: "http://localhost:5173",
+    origin: "https://devtinder-frontend-079s.onrender.com",
     credentials: true,
 }));
 // express json middleware to convert  body's json data to js object
@@ -42,7 +43,7 @@ initializeSocket(server);
 connectDB()
 .then(()=>{
     console.log("Database connected successfully");
-    server.listen(process.env.PORT, ()=>{
+    server.listen(process.env.PORT ||3000, ()=>{
     console.log("server listening on port 3000");
 });
 })
