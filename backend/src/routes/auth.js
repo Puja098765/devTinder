@@ -5,7 +5,7 @@ const User = require('../models/user');
 const {validateSignupData} = require('../utils/validation');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-
+const isProduction = process.env.NODE_ENV === "production";
 
 
 authRouter.post("/signup",  async (req,res)=>{
@@ -33,8 +33,8 @@ authRouter.post("/signup",  async (req,res)=>{
 
   res.cookie("token", token, {
     httpOnly: true,
-     secure: process.env.NODE_ENV === "production",
-     sameSite:"none",
+     secure: isProduction,
+     sameSite:isProduction ? "none" : "lax",
   expires: new Date(Date.now() + 8 * 3600000), // 1 day
   });
    res.json({ message: "User Added succcessfully!", data: savedUser});
@@ -60,8 +60,8 @@ authRouter.post("/login", async (req,res)=> {
             // Add token to cookie and send the response back to user
             res.cookie("token",token, { 
                 httpOnly: true,
-                secure: process.env.NODE_ENV === "production",
-                sameSite:"none",
+                secure: isProduction,
+                sameSite:isProduction ? "none" : "lax",
                 expires: new Date(Date.now() + 8 * 3600000), // 1 day
                 
             });
@@ -78,8 +78,8 @@ authRouter.post("/login", async (req,res)=> {
 authRouter.post("/logout", async (req, res) => {
     res.cookie("token", null, {
                httpOnly: true,
-                secure: process.env.NODE_ENV === "production",
-                sameSite:"none",
+                secure: isProduction,
+                sameSite:isProduction ? "none" : "lax",
         expires: new Date(Date.now()),
     });
     res.send("Logout successful");
