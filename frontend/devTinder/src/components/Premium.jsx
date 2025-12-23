@@ -46,9 +46,9 @@ const Premium =() => {
     return   isUserPremium ?  (
         "You're  already a premium user"
     ) : (
-   <div className="m-30">
+   <div className=" min-h-screen bg-[url('https://images.unsplash.com/photo-1734277659521-2985326528d1?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzYwfHxsYXJnZSUyMGhlaWdodCUyMGFuZCUyMHdpZHRoJTIwaGQlMjBiYWNrZ3JvdW5kJTIwaW1hZ2UlMjBmb3IlMjBzaWx2ZXIlMjBvciUyMGdvbGQlMjBtZW1iZXJzaGlwJTIwcGFnZXxlbnwwfHwwfHx8MA%3D%3D')] bg-cover bg-center pt-8 flex justify-center items-center">
         <div className="flex w-full flex-col lg:flex-row">
-  <div className="card bg-base-300 rounded-box grid h-80 grow place-items-center">
+  <div className="card bg-base-300 rounded-box grid h-80 grow place-items-center mx-30">
     <h1 className="font-bold text-3xl">Silver Membership</h1>
     <ul>
         <li> - Chat with other people</li>
@@ -58,8 +58,8 @@ const Premium =() => {
     </ul>
     <button  onClick={() =>handleBuyClick("silver")} className="btn btn-secondary">Buy Silver</button>
     </div>
-  <div className="divider lg:divider-horizontal">OR</div>
-  <div className="card bg-base-300 rounded-box grid h-80 grow place-items-center">
+  <div className="divider lg:divider-horizontal before:bg-white after:bg-white before:h-1 after:h-1">OR</div>
+  <div className="card bg-base-300 rounded-box grid h-80 grow place-items-center mx-30">
     <h1 className="font-bold text-3xl">Gold Membership</h1>
     <ul>
         <li> - Chat with other people</li>
