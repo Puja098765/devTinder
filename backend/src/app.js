@@ -10,7 +10,7 @@ require("dotenv").config();
 
 app.use(cors({
     // origin: "http://localhost:5173",
-    origin: "https://devtinder-frontend-079s.onrender.com",
+    origin: ["https://devtinder-frontend-079s.onrender.com" , "http://localhost:5173"],
     credentials: true,
 }));
 // express json middleware to convert  body's json data to js object
