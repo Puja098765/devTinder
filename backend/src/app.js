@@ -15,7 +15,7 @@ app.use(cors({
      methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
      allowedHeaders: ["Content-Type", "Authorization"]
 }));
-app.options("/*path", cors()); 
+app.options("*", cors()); 
 
 // express json middleware to convert  body's json data to js object
 app.use(express.json());
