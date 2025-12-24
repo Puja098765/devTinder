@@ -13,9 +13,10 @@ app.use(cors({
     origin: ["https://devtinder-frontend-npl1.onrender.com" , "http://localhost:5173"],
     credentials: true,
      methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
-     allowedHeaders: ["Content-Type", "Authorization"]
+     allowedHeaders: ["Content-Type", "Authorization"],
+     optionsSuccessStatus: 200 
 }));
-app.options("*", cors()); 
+ 
 
 // express json middleware to convert  body's json data to js object
 app.use(express.json());
