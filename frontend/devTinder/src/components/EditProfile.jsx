@@ -14,16 +14,16 @@ const EditProfile =({ user })=> {
         const [about, setAbout] =useState(user.about || "");
         const [error, setError] = useState("");
         const dispatch = useDispatch();
-        const [showToast, setShowTost] = useState(false);
+        const [showToast, setShowToast] = useState(false);
 
         const saveProfile = async() => {
             setError("");
             try {
             const res = await axios.patch(BASE_URL + "/profile/edit", {firstName,lastName,photoUrl,age,gender,about,}, { withCredentials:true });
             dispatch(addUser(res?.data?.data));
-            setShowTost(true);
+            setShowToast(true);
             setTimeout(() => {
-                setShowTost(false);
+                setShowToast(false);
             }, 3000);
             } catch (err) {
                 setError(err.response.data);
@@ -95,7 +95,7 @@ const EditProfile =({ user })=> {
     </div>
     </div>
     {showToast && (
-   <div className="toast toast-top toast-center">
+   <div className="toast toast-top toast-center z-50">
    <div className="alert alert-success">
     <span>Profile saved successfully.</span>
   </div>
