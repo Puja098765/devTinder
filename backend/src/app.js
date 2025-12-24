@@ -13,8 +13,9 @@ app.use(cors({
     origin: ["https://devtinder-frontend-079s.onrender.com" , "http://localhost:5173"],
     credentials: true,
      methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+     allowedHeaders: ["Content-Type", "Authorization"]
 }));
-
+app.options("/*path", cors()); 
 
 // express json middleware to convert  body's json data to js object
 app.use(express.json());
